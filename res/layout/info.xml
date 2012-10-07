@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none">
+
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+     <TextView
+        android:id="@+id/about"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:theme="@android:style/Theme.Dialog"
+        android:textColor="#00FF00"
+        android:text="v1.04.1\nMouseKeysRemote together with MouseKeysRemoteServer is a set of programs which allows you to control the mouse and keyboard of any Windows/Mac OSX or Linux PC over a wireless LAN or the internet with an Android compatible device.\n\nImportant note for firewall and security concerns: The application defaults to use UDP port 5555 to communicate with the PC. Password protected for some but LOW security. No data encryption on the protocol, use only on a secure connection!\n\nYou also need to download a small Java server program (operating system independent) and install it to the PC which should be controlled.\nGet the server at http://www.linuxfunkar.se/data/mousekeysremote-server-1.0.3.zip\nStart the server: java MouseKeysRemoteServer\n\nAuthor: Magnus Uppman\nmagnus.uppman@gmail.com\n(c) 2011-2012 www.linuxfunkar.se\nLicense: GPLv3+"/>
+
+</ScrollView>

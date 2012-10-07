@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none">
+
+<TableLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:stretchColumns="1"
+    >
+      <TableRow>
+    
+     <TextView
+        android:id="@+id/global_settings"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"        
+        android:text="Global Settings"/>
+ 	</TableRow>
+ 	
+     <TableRow>
+    
+     <TextView
+        android:id="@+id/ip"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/global_settings"
+        android:text="PC IP-address:"/>
+ 	</TableRow>
+
+    <TableRow>
+    <EditText
+        android:id="@+id/entry_ip"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:layout_below="@id/ip"
+        android:text=""/>
+     </TableRow>
+     
+ <TableRow>  
+     <TextView
+        android:id="@+id/port"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+       	android:layout_below="@id/entry_ip"
+        android:text="PC UDP-port:"/> 
+ </TableRow>
+  
+  <TableRow>
+    <EditText
+        android:id="@+id/entry_port"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:layout_below="@id/port"
+        android:text=""/>
+  </TableRow>    
+  
+        
+     <TableRow>
+     <TextView
+        android:id="@+id/password"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/entry_port"
+        android:text="Password:"/>
+        
+ 	</TableRow>
+ 	
+    <TableRow>
+    <EditText
+        android:id="@+id/password_entry"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:layout_below="@id/password"
+        android:text=""/>
+     </TableRow>
+
+  <TableRow>
+     <TextView
+        android:id="@+id/keyboard_lang"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password_entry"
+        android:text="PC keyboard type:"/>
+
+</TableRow>
+
+  <TableRow>
+  <Spinner 
+        android:id="@+id/spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/keyboard_lang"
+        android:prompt="@string/lang_prompt"
+    />
+</TableRow>
+    
+    
+    <TableRow>
+     <TextView
+        android:id="@+id/layout_settings"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"   
+        android:layout_below="@id/spinner"     
+        android:text="Layout Settings"/>
+ 	</TableRow>
+ 	
+<TableRow>
+     <TextView
+        android:id="@+id/layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_settings"
+        android:text="Name:"/>
+
+</TableRow>
+
+  <TableRow>
+    <EditText
+        android:id="@+id/layout_entry"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:layout_below="@id/layout"
+        android:text=""/>
+     </TableRow>
+
+     <TableRow>
+     <TextView
+        android:id="@+id/kpcols"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_entry"
+        android:text="Keypad cols:"/>
+
+</TableRow>
+
+     <TableRow>
+
+    <EditText
+        android:id="@+id/entry_kpcols"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:layout_below="@id/kpcols"
+        android:text="3"/>
+     </TableRow>
+
+     <TableRow>
+        
+          <TextView
+        android:id="@+id/kprows"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/entry_kpcols"
+        android:text="Keypad rows:"/>
+     </TableRow>
+
+     <TableRow>
+
+    <EditText
+        android:id="@+id/entry_kprows"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:layout_below="@id/kprows"
+        android:text="4"/>
+</TableRow>
+
+
+  <TableRow>
+        
+          <TextView
+        android:id="@+id/text_size"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/kprows"
+        android:text="Text size scale:"/>
+     </TableRow>
+
+     <TableRow>
+
+    <EditText
+        android:id="@+id/entry_text_size"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:layout_below="@id/text_size"
+        android:text=""/>
+</TableRow>
+
+<TableRow>
+
+    <CheckBox
+        android:id="@+id/pinch_zoom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/entry_text_size"
+        android:text="Pinch zoom"
+        />
+     </TableRow>
+     
+     
+<TableRow>
+
+    <CheckBox
+        android:id="@+id/mousepad"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pinch_zoom"
+        android:text="Mouse pad"
+        />
+     </TableRow>
+     
+
+         <TableRow>
+     <TextView
+        android:id="@+id/mouse_speed"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/mousepad"
+        android:text="Mouse speed:"
+        />
+</TableRow>
+
+ <TableRow>
+  <Spinner 
+        android:id="@+id/mouse_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/mouse_speed"
+        android:prompt="@string/mouse_speed_prompt"
+        />
+</TableRow>
+
+ <TableRow>
+
+    <TextView
+        android:id="@+id/mousepadtext"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mouse_spinner"
+        android:text="Mousepad size (%):"/>
+     </TableRow>
+ 
+<TableRow>
+
+    <EditText
+        android:id="@+id/mousepadentry"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:layout_below="@id/mousepadtext"
+        android:text="50"/>
+     </TableRow>
+     
+  <TableRow>
+
+    <CheckBox
+        android:id="@+id/mousewheel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mousepadentry"
+        android:text="Mouse wheel"/>
+     </TableRow>
+     
+   <TableRow>
+
+    <CheckBox
+        android:id="@+id/clickontap"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mousewheel"
+        android:text="Click on tap"/>
+     </TableRow>
+     
+   
+         <TableRow>
+     <TextView
+        android:id="@+id/layout_mode"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/clickontap"
+        android:text="Layout mode:"
+        />
+</TableRow>
+
+ <TableRow>
+  <Spinner 
+        android:id="@+id/layout_mode_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/layout_mode"
+        android:prompt="@string/layout_mode_prompt"
+        />
+</TableRow>
+
+   <TableRow>
+    <CheckBox
+        android:id="@+id/vibrate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_mode_spinner"
+        android:text="Haptic feedback"/>
+     </TableRow>
+     
+          
+      <TableRow>
+
+    <CheckBox
+        android:id="@+id/always_on"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/vibrate"
+        android:text="Always on"/>
+     </TableRow>
+
+ <TableRow>
+     <TextView
+        android:id="@+id/sensor_settings"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"   
+        android:layout_below="@id/always_on"     
+        android:text="Sensor settings:"/>
+ 	</TableRow>
+     
+       <TableRow>
+
+    <CheckBox
+        android:id="@+id/sensors"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sensor_settings"
+        android:text="Sensor movement"/>
+     </TableRow>
+   
+       <TableRow>
+
+    <CheckBox
+        android:id="@+id/sensors_x"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sensors"
+        android:text="Rotation left/right"/>
+     </TableRow>
+     
+      <TableRow>
+
+    <CheckBox
+        android:id="@+id/sensors_y"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sensors_x"
+        android:text="Rotation fwd/bwd"/>
+     </TableRow>
+     
+   
+      <TableRow>
+      <RadioGroup
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/sensors_y"
+      android:orientation="vertical">
+      <RadioButton android:id="@+id/sensors_cursor"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Sensors control cursor" />
+      <RadioButton android:id="@+id/sensors_mouse"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Sensors control mouse (normal)" />
+      <RadioButton android:id="@+id/sensors_mouse_game"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Sensors control mouse (game)" />
+    </RadioGroup>
+    
+      </TableRow>
+     
+       <TableRow>
+     <TextView
+        android:id="@+id/background_col_label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"  
+        android:layout_below="@id/sensors_mouse_game"      
+        android:text="Background color"/>
+ 	</TableRow>
+ 	
+       <TableRow>
+    <Button
+        android:id="@+id/background_col"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/background_col_label"
+        android:text="Click to change!"/>
+     </TableRow>
+     
+        <TableRow>
+     <TextView
+        android:id="@+id/text_col_label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"  
+        android:layout_below="@id/background_col"      
+        android:text="Text color"/>
+ 	</TableRow>
+ 	
+         <TableRow>
+    <Button
+        android:id="@+id/textcol"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_col_label"
+        android:text="Click to change!"/>
+     </TableRow>
+        
+             <TableRow>
+     <TextView
+        android:id="@+id/mousepad_col_label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"  
+        android:layout_below="@id/textcol"      
+        android:text="Mousepad color"/>
+ 	</TableRow>
+           
+                <TableRow>
+    <Button
+        android:id="@+id/mousepad_col"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mousepad_col_label"
+        android:text="Click to change!"/>
+     </TableRow>
+     
+             <TableRow>
+     <TextView
+        android:id="@+id/mousewheel_col_label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"  
+        android:layout_below="@id/mousepad_col"      
+        android:text="Mousewheel color"/>
+ 	</TableRow>
+ 	
+               <TableRow>
+    <Button
+        android:id="@+id/mousewheel_col"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mousewheel_col_label"
+        android:text="Click to change!"/>
+     </TableRow>
+     
+</TableLayout>
+
+     </ScrollView>
+
