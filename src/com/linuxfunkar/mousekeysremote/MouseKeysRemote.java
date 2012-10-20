@@ -146,6 +146,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MouseKeysRemote extends Activity implements
 		ColorPickerDialog.OnColorChangedListener, OnClickListener,
@@ -418,6 +419,7 @@ public class MouseKeysRemote extends Activity implements
 	private ScaleGestureDetector zoomDetector;
 	private View mouseWheelPanel;
 	private GestureDetector mouseWheelDetector;
+	private ButtonView buttonView;
 
 	public static Paint mPaint;
 	// private MaskFilter mEmboss;
@@ -429,13 +431,18 @@ public class MouseKeysRemote extends Activity implements
 	public static int mousewheelCol;
 
 	private ServiceConnection pingServiceConnection;
-
-	private ButtonView buttonView;
+	private Security security;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		try {
+			security = new Security(Preferences.getInstance(this).getPassword());
+		} catch (Exception ex) {
+			debug(ex.toString());
+		}
 
 		// Should remember all button states?
 
@@ -1534,6 +1541,11 @@ public class MouseKeysRemote extends Activity implements
 						SharedPreferences.Editor editor = mySharedPreferences
 								.edit();
 						editor.putString("password", passwd);
+						try {
+							security = new Security(passwd);
+						} catch (Exception ex) {
+							debug(ex.toString());
+						}
 						editor.commit();
 					}
 
@@ -2159,17 +2171,25 @@ public class MouseKeysRemote extends Activity implements
 	}
 
 	void sendUDP(String msg_plain) {
-		String msg = passwd + msg_plain;
 		try {
-			DatagramSocket s = new DatagramSocket();
-			InetAddress local = InetAddress.getByName(host);
-			int msg_length = msg.length();
-			byte[] message = msg.getBytes();
-			DatagramPacket p = new DatagramPacket(message, msg_length, local,
-					port);
-			s.send(p);
-		} catch (Exception e) {
-			debug(e.toString());
+			String msg = security.encrypt(msg_plain);
+			try {
+				DatagramSocket s = new DatagramSocket();
+				InetAddress local = InetAddress.getByName(host);
+				int msg_length = msg.length();
+				byte[] message = msg.getBytes();
+				DatagramPacket p = new DatagramPacket(message, msg_length,
+						local, port);
+				s.send(p);
+			} catch (Exception e) {
+				debug(e.toString());
+			}
+		} catch (Exception ex) {
+			Toast.makeText(getApplicationContext(),
+					getString(R.string.security_context_failed_),
+					Toast.LENGTH_LONG).show();
+
+			debug(ex.toString());
 		}
 	}
 

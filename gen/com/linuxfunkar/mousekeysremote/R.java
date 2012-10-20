@@ -137,6 +137,7 @@ public final class R {
         public static final int mnu_visible=0x7f070009;
         public static final int mouse_speed_prompt=0x7f070003;
         public static final int name=0x7f07000b;
+        public static final int security_context_failed_=0x7f070012;
         public static final int unhide_all=0x7f070011;
         public static final int wrong_response_from_server_at=0x7f070010;
     }

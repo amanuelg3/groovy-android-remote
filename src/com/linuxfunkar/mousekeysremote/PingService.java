@@ -84,9 +84,12 @@ public class PingService extends Service {
 
 	private boolean ping(String host, int port) {
 		try {
+			Security security = new Security(Preferences.getInstance(this)
+					.getPassword());
+
 			DatagramSocket socket = new DatagramSocket();
 			socket.connect(new InetSocketAddress(host, port));
-			byte[] msg = "ping".getBytes("UTF-8");
+			byte[] msg = security.encrypt("ping").getBytes("UTF-8");
 			socket.send(new DatagramPacket(msg, msg.length));
 			socket.setSoTimeout(5000);
 

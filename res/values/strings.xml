@@ -43,6 +43,7 @@
      <string name="connection_lost">"Connection lost "</string>
      <string name="wrong_response_from_server_at">"Wrong response from server at "</string>
      <string name="unhide_all">Unhide All</string>
+     <string name="security_context_failed_">Security context failed.</string>
      
 </resources>
 
