@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello"></string>
-    <string name="app_name">MouseKeysRemote</string>
+    <string name="app_name">Groovy Remote Control</string>
 
   <string name="lang_prompt">PC keyboard type</string>
   
@@ -30,5 +30,19 @@
         <item>Landscape</item>
     </string-array>
     
+     <string name="mnu_command">Command</string>
+     <string name="mnu_label">Label</string>
+     <string name="mnu_color">Color</string>
+     <string name="mnu_sticky">Sticky</string>
+     <string name="mnu_visible">Hide</string>
+     <string name="edit_label">Edit label</string>
+     <string name="name">Name</string>
+     <string name="connecting_to_server">"Connecting to server "</string>
+     <string name="connection_failed_with">"Connection failed with "</string>
+     <string name="connection_established_with">"Connection established with "</string>
+     <string name="connection_lost">"Connection lost "</string>
+     <string name="wrong_response_from_server_at">"Wrong response from server at "</string>
+     <string name="unhide_all">Unhide All</string>
+     
 </resources>
 

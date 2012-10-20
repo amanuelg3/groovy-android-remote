@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="button_id" type="id"/>
+    <item name="button_down" type="id"></item>
+    <item name="button_sticky" type="id"/>
+    
+</resources>

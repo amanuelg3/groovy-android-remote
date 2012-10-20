@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <EditText
+        android:id="@+id/stdialog_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="1dp"
+        android:layout_toRightOf="@+id/stdialog_label"
+        android:ems="10"
+        android:inputType="text"
+        android:padding="5dp" />
+
+    <Button
+        android:id="@+id/stdialog_pbCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/stdialog_text"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="18dp"
+        android:layout_toRightOf="@+id/stdialog_pbOkay"
+        android:text="@android:string/cancel" />
+
+    <Button
+        android:id="@+id/stdialog_pbOkay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/stdialog_pbCancel"
+        android:layout_alignParentLeft="true"
+        android:minWidth="60dp"
+        android:text="@android:string/ok" />
+
+    <TextView
+        android:id="@+id/stdialog_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/stdialog_text"
+        android:layout_alignBottom="@+id/stdialog_text"
+        android:layout_alignParentLeft="true"
+        android:padding="5dp"
+        android:text="Label"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>

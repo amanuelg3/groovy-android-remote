@@ -195,7 +195,8 @@ public class CustomDrawableView extends View {
 						+ (keyHeight * i) + keyHeight;
 				// RemotePC2.debug("keyRect.toString: " +
 				// keyRect.toString());
-				int sticky = MouseKeysRemote.getKeyValueSticky(keyCnt + 1);
+				int sticky = 0; // MouseKeysRemote.getKeyValueSticky(keyCnt +
+								// 1);
 
 				keyCol = MouseKeysRemote.mySharedPreferences.getInt("KeyColor"
 						+ "layout" + MouseKeysRemote.keys_layout + "key"
@@ -208,7 +209,7 @@ public class CustomDrawableView extends View {
 				// 0xFF ,(255 -b)*2 & 0xFF);
 				//
 				if ((MouseKeysRemote.keyState[keyCnt] == MouseKeysRemote.KEY_STATE_UP || (MouseKeysRemote
-						.getKeyValue(keyCnt + 1) == MouseKeysRemote.DUMMY && mode == EditMode.None))
+						.getKeyValue(keyCnt + 1) == Constants.DUMMY && mode == EditMode.None))
 						&& sticky == MouseKeysRemote.UNSTUCK_KEY) // Button
 																	// up
 				{
@@ -253,13 +254,13 @@ public class CustomDrawableView extends View {
 							(float) keyHeight / 4, rectPaint);
 				}
 
-				if (MouseKeysRemote.getKeyValue(keyCnt + 1) == MouseKeysRemote.DUMMY
+				if (MouseKeysRemote.getKeyValue(keyCnt + 1) == Constants.DUMMY
 						&& mode == EditMode.None) {
 				} else {
 					String keyName;
 					if (mode == EditMode.Binding) {
 						keyName = mark
-								+ MouseKeysRemote.getActionName(MouseKeysRemote
+								+ Constants.getActionName(MouseKeysRemote
 										.getKeyValue(keyCnt + 1));
 					} else {
 						keyName = mark
@@ -269,7 +270,7 @@ public class CustomDrawableView extends View {
 														+ "layout"
 														+ MouseKeysRemote.keys_layout
 														+ "key" + (keyCnt + 1),
-												MouseKeysRemote
+												Constants
 														.getActionName(MouseKeysRemote
 																.getKeyValue(keyCnt + 1)));
 					}

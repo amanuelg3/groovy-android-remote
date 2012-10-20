@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/mnuCommand" android:visible="true" android:title="@string/mnu_command" android:titleCondensed="Cmd" android:enabled="true"></item>
+    <item android:id="@+id/mnuLabel" android:visible="true" android:title="@string/mnu_label" android:titleCondensed="Lbl" android:enabled="true"></item>
+    <item android:id="@+id/mnuColor" android:visible="true" android:title="@string/mnu_color" android:titleCondensed="Clr" android:enabled="true"></item>
+    <item android:id="@+id/mnuSticky" android:title="@string/mnu_sticky" android:titleCondensed="Stk" android:visible="true" android:checked="false" android:enabled="true" android:checkable="true"></item>
+    <item android:id="@+id/mnuVisible" android:title="@string/mnu_visible"></item>
+    
+
+</menu>
