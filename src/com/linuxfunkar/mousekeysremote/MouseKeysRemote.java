@@ -270,9 +270,9 @@ public class MouseKeysRemote extends Activity implements
 	Spinner mouse_spinner;
 	Spinner layout_mode_spinner;
 
-	LinearLayout layout_action;
-
-	ListView choose_action;
+	private LinearLayout layout_action;
+	private ListView choose_action;
+	private EditText edCmd;
 
 	TextView action_text;
 
@@ -528,6 +528,15 @@ public class MouseKeysRemote extends Activity implements
 		action_text = new TextView(this);
 		action_text.setText("Choose action:");
 
+		edCmd = new EditText(this);
+		edCmd.addTextChangedListener(new TextWatcherAdapter() {
+			@Override
+			public void afterTextChanged(Editable s) {
+				Preferences.getInstance(getApplicationContext())
+						.setKeyCustomCommand(key_to_edit, s.toString());
+			}
+		});
+
 		choose_action = new ListView(this);
 		choose_action.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
@@ -539,6 +548,7 @@ public class MouseKeysRemote extends Activity implements
 		choose_action.setAdapter(adapter);
 		choose_action.setTextFilterEnabled(true);
 		layout_action.addView(action_text);
+		layout_action.addView(edCmd);
 		layout_action.addView(choose_action);
 
 		layout_select = new LinearLayout(this);
@@ -560,6 +570,10 @@ public class MouseKeysRemote extends Activity implements
 
 		sendLanguage();
 
+		showMainView();
+	}
+
+	private void showMainView() {
 		setContentView(R.layout.layout_view);
 		setupGui();
 	}
@@ -629,21 +643,31 @@ public class MouseKeysRemote extends Activity implements
 				Button b = (Button) v;
 				boolean sticky = Boolean.valueOf(b.getTag(R.id.button_sticky)
 						.toString());
+				String cmd = Preferences.getInstance(getApplicationContext())
+						.getKeyCustomCommand(
+								Integer.valueOf(b.getTag(R.id.button_id)
+										.toString()));
 
 				switch (event.getAction()) {
 					case KeyEvent.ACTION_DOWN:
-						if (!sticky)
-							sendUDP(Constants.getActionPress(keyCode));
+						if (cmd.equals("")) {
+							if (!sticky)
+								sendUDP(Constants.getActionPress(keyCode));
+						} else {
+							sendUDP(cmd);
+						}
 						vibrate();
 						return true;
 					case KeyEvent.ACTION_UP:
-						if (sticky) {
-							if (b.isPressed())
-								sendUDP(Constants.getActionPress(keyCode));
-							else
+						if (cmd.equals("")) {
+							if (sticky) {
+								if (b.isPressed())
+									sendUDP(Constants.getActionPress(keyCode));
+								else
+									sendUDP(Constants.getActionRelease(keyCode));
+							} else
 								sendUDP(Constants.getActionRelease(keyCode));
-						} else
-							sendUDP(Constants.getActionRelease(keyCode));
+						}
 						return true;
 				}
 				return false;
@@ -1340,7 +1364,7 @@ public class MouseKeysRemote extends Activity implements
 				return true;
 			case MENU_KP_TOUCH:
 				sendLanguage();
-				setContentView(R.layout.layout_view);
+				showMainView();
 				return true;
 			case MENU_EDIT:
 				if (edit == EditMode.None)
@@ -1355,7 +1379,7 @@ public class MouseKeysRemote extends Activity implements
 					keyPadView.setMark(EditMode.Sticky);
 				else
 					keyPadView.setMark(edit);
-				setContentView(R.layout.layout_view);
+				showMainView();
 				return true;
 			case MENU_ABOUT:
 				setContentView(R.layout.info);
@@ -1369,7 +1393,7 @@ public class MouseKeysRemote extends Activity implements
 			case MENU_CALIBRATE:
 				debug("calibrate");
 				calibrate = true;
-				setContentView(R.layout.layout_view);
+				showMainView();
 				return true;
 			case MENU_LAYOUT:
 				setContentView(layout_select);
@@ -1729,7 +1753,7 @@ public class MouseKeysRemote extends Activity implements
 				return true;
 			case MENU_STICK:
 				sticky = !sticky;
-				setContentView(R.layout.layout_view);
+				showMainView();
 				return true;
 			case MENU_UNHIDE:
 				buttonView.unhideAll();
@@ -1787,7 +1811,7 @@ public class MouseKeysRemote extends Activity implements
 				debug("back");
 				sendLanguage();
 				if (findViewById(R.id.layout_view) == null)
-					setContentView(R.layout.layout_view);
+					showMainView();
 				else
 					quit();
 			}
@@ -1815,7 +1839,7 @@ public class MouseKeysRemote extends Activity implements
 			editor.commit();
 
 			sendLanguage();
-			setContentView(R.layout.layout_view);
+			showMainView();
 		} else if (v == choose_layout) // Select layout
 		{
 			debug("choose_layout");
@@ -1828,7 +1852,7 @@ public class MouseKeysRemote extends Activity implements
 
 			setDefaultKeys();
 			sendLanguage();
-			setContentView(R.layout.layout_view);
+			showMainView();
 		}
 
 	}
@@ -2225,28 +2249,28 @@ public class MouseKeysRemote extends Activity implements
 			editor.putInt("text_col" + keys_layout, color);
 			editor.commit();
 			keyPadView.postInvalidate();
-			setContentView(R.layout.layout_view);
+			showMainView();
 		} else if (elem == ColorElement.Back) {
 			backCol = color;
 			SharedPreferences.Editor editor = mySharedPreferences.edit();
 			editor.putInt("background_col" + keys_layout, color);
 			editor.commit();
 			keyPadView.postInvalidate();
-			setContentView(R.layout.layout_view);
+			showMainView();
 		} else if (elem == ColorElement.MousePad) {
 			mousepadCol = color;
 			SharedPreferences.Editor editor = mySharedPreferences.edit();
 			editor.putInt("mousepad_col" + keys_layout, color);
 			editor.commit();
 			keyPadView.postInvalidate();
-			setContentView(R.layout.layout_view);
+			showMainView();
 		} else if (elem == ColorElement.MouseWheel) {
 			mousewheelCol = color;
 			SharedPreferences.Editor editor = mySharedPreferences.edit();
 			editor.putInt("mousewheel_col" + keys_layout, color);
 			editor.commit();
 			keyPadView.postInvalidate();
-			setContentView(R.layout.layout_view);
+			showMainView();
 		}
 	}
 
@@ -2261,6 +2285,9 @@ public class MouseKeysRemote extends Activity implements
 		switch (item.getItemId()) {
 			case R.id.mnuCommand:
 				setContentView(layout_action);
+				edCmd.setText(Preferences.getInstance(getApplicationContext())
+						.getKeyCustomCommand(key_to_edit));
+
 				return true;
 			case R.id.mnuLabel:
 				// display_edit_name_layout();

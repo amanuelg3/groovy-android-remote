@@ -146,11 +146,11 @@ public class ButtonView extends TableLayout {
 
 			switch (event.getAction()) {
 				case MotionEvent.ACTION_DOWN:
-					keyListener.onKey(lastButton, keyValue, new KeyEvent(
+					onKeyListener(lastButton, keyValue, new KeyEvent(
 							KeyEvent.ACTION_DOWN, keyValue));
 					return true;
 				case MotionEvent.ACTION_UP:
-					keyListener.onKey(lastButton, keyValue, new KeyEvent(
+					onKeyListener(lastButton, keyValue, new KeyEvent(
 							KeyEvent.ACTION_UP, keyValue));
 					return true;
 			}
@@ -190,6 +190,11 @@ public class ButtonView extends TableLayout {
 	@Override
 	protected ContextMenuInfo getContextMenuInfo() {
 		return menuInfo;
+	}
+
+	protected void onKeyListener(View view, int keyValue, KeyEvent event) {
+		if (keyListener != null)
+			keyListener.onKey(view, keyValue, event);
 	}
 
 	public void setOnKeyListener(OnKeyListener listener) {

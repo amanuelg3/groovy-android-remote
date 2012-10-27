@@ -73,4 +73,16 @@ public class Preferences {
 		return prefs.getInt("KeyColor" + "layout" + getLayout() + "key"
 				+ key_num, -1);
 	}
+
+	public String getKeyCustomCommand(int key_num) {
+		return prefs.getString("KeyCustom" + "layout" + getLayout() + "key"
+				+ key_num, "");
+	}
+
+	public void setKeyCustomCommand(int key_num, String value) {
+		SharedPreferences.Editor editor = prefs.edit();
+		editor.putString(
+				"KeyCustom" + "layout" + getLayout() + "key" + key_num, value);
+		editor.commit();
+	}
 }

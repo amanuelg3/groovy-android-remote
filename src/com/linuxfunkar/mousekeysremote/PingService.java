@@ -1,8 +1,12 @@
 package com.linuxfunkar.mousekeysremote;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.InputStreamReader;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
+import java.nio.charset.Charset;
 
 import android.app.Activity;
 import android.app.Service;
@@ -95,7 +99,12 @@ public class PingService extends Service {
 
 			DatagramPacket response = new DatagramPacket(msg, 4);
 			socket.receive(response);
-			if (!(new String(response.getData(), "UTF-8").equals("pong"))) {
+			BufferedReader input = new BufferedReader(new InputStreamReader(
+					new ByteArrayInputStream(response.getData()),
+					Charset.forName("UTF-8")));
+			String s = input.readLine();
+
+			if (!s.startsWith("pong")) {
 				Toast.makeText(
 						getApplicationContext(),
 						getString(R.string.wrong_response_from_server_at)
